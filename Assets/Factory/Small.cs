@@ -10,13 +10,13 @@ public class Small : MonoBehaviour, IBullet
         dir = direction;
         rb = GetComponent<Rigidbody2D>();
         
-        rb.AddForce(dir * 10, ForceMode2D.Impulse);
+        rb.AddForce(dir * 3, ForceMode2D.Impulse);
     }
 
     private void Update()
     {
         
-        //transform.position += dir * Time.deltaTime;
+        transform.position += dir * (Time.deltaTime * 5);
             //Translate(dir * Time.deltaTime);
     }
 }

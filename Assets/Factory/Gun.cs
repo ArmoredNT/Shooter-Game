@@ -1,5 +1,6 @@
 using Factory;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Gun : MonoBehaviour
     private float timer;
 
     private int spawnNum = 0;
+    public delegate void AmmoChange();
+    public event AmmoChange OnAmmoChange;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,13 +29,15 @@ public class Gun : MonoBehaviour
             bulletFactory[spawnNum].SpawnIBullet(Vector3.up, transform.position);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && spawnNum == 1)
         {
             spawnNum = 0;
+            OnAmmoChange.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && spawnNum == 0)
         {
             spawnNum = 1;
+            OnAmmoChange?.Invoke();
         }
             
     }

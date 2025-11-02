@@ -20,7 +20,6 @@ public class Link : MonoBehaviour
         if (direction.magnitude > 0.1f)
         {
             transform.position += direction.normalized * (3 * Time.deltaTime);
-            
             //rb.AddForce(direction * 3, ForceMode2D.Force);
         }
         
